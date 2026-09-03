@@ -1,0 +1,1132 @@
+/* ==========================================================================
+   NEXT-GEN EXECUTION: SYED AKBAR HAIDER ZAIDI PORTFOLIO
+   Design System: Neuform Featured "Next-Gen Execution" (2026)
+   Tokens: Primary #9DFF3D, Secondary #FF4D4D, Background #050505, Surface #18181B
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette (Neuform Next-Gen Execution Tokens) */
+  --primary: #9DFF3D;
+  --secondary: #FF4D4D;
+  --accent: #FF4D4D;
+  --background: #050505;
+  --surface: #18181B;
+  --surface-secondary: #0F0F11;
+  --surface-elevated: #212126;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  
+  --border: #27272A;
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-active: #9DFF3D;
+  --border-danger: #FF4D4D;
+
+  /* Typography */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing Tokens */
+  --space-base: 8px;
+  --space-gap: 16px;
+  --card-padding: 24px;
+  --section-padding: 80px;
+
+  /* Rounded Radii Tokens */
+  --rounded-card: 38px;
+  --rounded-control: 37px;
+  --rounded-pill: 9999px;
+
+  /* Shadows & Glows */
+  --glow-primary: 0 0 30px rgba(157, 255, 61, 0.25);
+  --glow-accent: 0 0 30px rgba(255, 77, 77, 0.25);
+  --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--background);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--background);
+}
+
+/* Background Canvas & Atmospheric Grid */
+#gravity-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ambient-grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(to right, rgba(39, 39, 42, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 39, 42, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+}
+
+.ambient-glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.orb-primary {
+  top: -100px;
+  left: 30%;
+  width: 500px;
+  height: 500px;
+  background: var(--primary);
+}
+
+.orb-accent {
+  bottom: 10%;
+  right: 10%;
+  width: 450px;
+  height: 450px;
+  background: var(--secondary);
+}
+
+/* Layout Containers */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--space-gap);
+  position: relative;
+  z-index: 2;
+}
+
+/* Typography Standards */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.color-primary { color: var(--primary); }
+.color-accent { color: var(--accent); }
+.color-secondary { color: var(--text-secondary); }
+
+/* Modular Bento Panels & Cards */
+.bento-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--rounded-card);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.bento-panel:hover {
+  border-color: rgba(157, 255, 61, 0.4);
+}
+
+.nested-surface {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--rounded-card) - 10px);
+  padding: 1.25rem;
+}
+
+/* Buttons & Controls */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--rounded-control);
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition-smooth);
+  position: relative;
+  user-select: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #050505;
+  font-weight: 700;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-primary);
+  background: #afff57;
+}
+
+.btn-outline {
+  background: rgba(24, 24, 27, 0.6);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-secondary);
+  background: var(--surface-elevated);
+  transform: translateY(-2px);
+}
+
+.btn-pill {
+  border-radius: var(--rounded-pill);
+}
+
+.btn-mono {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+/* Badges & Status Indicators */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--rounded-pill);
+  background: rgba(157, 255, 61, 0.1);
+  border: 1px solid rgba(157, 255, 61, 0.25);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.status-dot-accent {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Floating Precision Navigation Bar */
+.navbar-wrapper {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-gap);
+  pointer-events: none;
+}
+
+.navbar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: var(--rounded-pill);
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  max-width: 1120px;
+  width: 100%;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.brand-symbol {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+/* Anti-Gravity Toggle */
+.btn-antigravity-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  background: rgba(157, 255, 61, 0.08);
+  border: 1px solid rgba(157, 255, 61, 0.3);
+  border-radius: var(--rounded-pill);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-antigravity-toggle:hover {
+  background: rgba(157, 255, 61, 0.18);
+  box-shadow: 0 0 15px rgba(157, 255, 61, 0.3);
+}
+
+.btn-antigravity-toggle.active {
+  background: var(--primary);
+  color: #050505;
+  border-color: var(--primary);
+  box-shadow: var(--glow-primary);
+}
+
+/* Hero Section (Next-Gen Execution Bento) */
+.hero-section {
+  padding-top: 8rem;
+  padding-bottom: 3.5rem;
+}
+
+.hero-bento-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.95fr;
+  gap: var(--space-gap);
+  align-items: stretch;
+}
+
+.hero-main-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 2.8rem;
+}
+
+.hero-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-display-heading {
+  font-size: 3.6rem;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.4rem;
+  color: var(--text-primary);
+}
+
+.hero-subtext {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin-bottom: 2.2rem;
+  max-width: 620px;
+}
+
+.hero-cta-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.hero-telemetry-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.telemetry-item .value {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.telemetry-item .label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+/* Hero Profile & Focal Object Card */
+.hero-profile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.focal-viewport {
+  position: relative;
+  border-radius: calc(var(--rounded-card) - 12px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-secondary);
+  aspect-ratio: 1 / 1;
+  margin-bottom: 1.5rem;
+}
+
+.focal-viewport img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.hero-profile-card:hover .focal-viewport img {
+  transform: scale(1.04);
+}
+
+.focal-overlay-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--rounded-pill);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-identity-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.profile-identity-info p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1.25rem;
+}
+
+.quick-contact-pills {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.contact-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--rounded-pill);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.contact-pill-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--surface-elevated);
+}
+
+/* Anti-Gravity Live Operational Bar */
+.antigravity-operational-bar {
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 2.2rem;
+}
+
+.operational-info h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.operational-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Sections Shared Structure */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.section-header-compact {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.section-title-wrap h2 {
+  font-size: 2.4rem;
+  letter-spacing: -0.03em;
+  margin-top: 0.4rem;
+}
+
+.section-title-wrap p {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  margin-top: 0.25rem;
+}
+
+/* Projects Showcase (Modular Bento Panels) */
+.projects-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-gap);
+}
+
+.project-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.project-display-viewport {
+  position: relative;
+  border-radius: calc(var(--rounded-card) - 14px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  margin-bottom: 1.5rem;
+}
+
+.project-display-viewport img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-bento-card:hover .project-display-viewport img {
+  transform: scale(1.06);
+}
+
+.project-info-block {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-title-row {
+  margin-bottom: 0.75rem;
+}
+
+.project-title-row h3 {
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.project-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.tech-tag-neu {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--rounded-pill);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  color: #D4D4D8;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.project-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-direct-url {
+  font-family: var(--font-mono);
+  color: var(--primary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-fast);
+}
+
+.project-direct-url:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* Bento Information Architecture (About & Company Pitch) */
+.company-bento-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-gap);
+  margin-bottom: var(--space-gap);
+}
+
+.pitch-main-card {
+  padding: 2.8rem;
+}
+
+.pitch-main-card h3 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+
+.pitch-main-card p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.company-advantage-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-gap);
+}
+
+.advantage-card {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.advantage-card .mono-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.advantage-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.advantage-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Skills Matrix Bento */
+.skills-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-gap);
+}
+
+.skill-bento-card {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.skill-metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.skill-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.skill-bento-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.skill-bento-card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.skill-progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--surface-secondary);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 99px;
+}
+
+/* Contact & Dispatch Terminal */
+.contact-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--space-gap);
+}
+
+.contact-info-panel {
+  padding: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-header-block h3 {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.contact-header-block p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.contact-channel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contact-channel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem;
+  border-radius: calc(var(--rounded-card) - 16px);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  transition: var(--transition-fast);
+}
+
+.contact-channel-row:hover {
+  border-color: var(--primary);
+  background: var(--surface-elevated);
+}
+
+.channel-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.channel-meta-left .icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(157, 255, 61, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.channel-text-val .sub {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.channel-text-val a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.channel-text-val a:hover {
+  color: var(--primary);
+}
+
+.btn-copy-chip {
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--rounded-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-fast);
+}
+
+.btn-copy-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Dispatch Form */
+.contact-form-panel {
+  padding: 2.6rem;
+}
+
+.contact-form-panel h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.contact-form-panel p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1.8rem;
+}
+
+.form-group-neu {
+  margin-bottom: 1.25rem;
+}
+
+.form-label-neu {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-control-neu {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  border-radius: calc(var(--rounded-control) - 14px);
+  background: var(--surface-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-control-neu:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(157, 255, 61, 0.2);
+  background: var(--surface-elevated);
+}
+
+textarea.form-control-neu {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Toast Notifications */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--rounded-pill);
+  background: var(--surface);
+  border: 1px solid var(--primary);
+  box-shadow: var(--glow-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transform: translateY(120px);
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+}
+
+.toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Footer */
+.footer {
+  padding: 4rem 0 2.5rem 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-nav-list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer-nav-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: var(--transition-fast);
+}
+
+.footer-nav-list a:hover {
+  color: var(--primary);
+}
+
+.footer-subline {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Zero Gravity State Active Animations */
+body.zero-gravity-mode .bento-panel {
+  animation: zeroGravityFloat 8s infinite ease-in-out alternate;
+}
+
+body.zero-gravity-mode .project-bento-card:nth-child(even) {
+  animation-duration: 9.5s;
+  animation-delay: -3s;
+}
+
+body.zero-gravity-mode .skill-bento-card:nth-child(2n) {
+  animation-duration: 7s;
+  animation-delay: -1.5s;
+}
+
+@keyframes zeroGravityFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(1.2deg); }
+  100% { transform: translateY(10px) rotate(-0.8deg); }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .hero-bento-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .company-bento-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero-display-heading {
+    font-size: 2.6rem;
+  }
+
+  .hero-main-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .projects-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .company-advantage-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-telemetry-strip {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .antigravity-operational-bar {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+}
